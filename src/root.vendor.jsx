@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "./App.css";
 import Login from "./components.vendor/Login";
 import Register from "./components.vendor/Register";
 import AddProducts from "./components.vendor/AddProduct";
