@@ -5,22 +5,28 @@ class Products extends Component {
   state = {
     products: [],
     showDetails: false,
-    detailProduct: ""
+    detailProduct: "",
+    isDataFetched: false
   };
   componentWillReceiveProps(props) {
     console.log("id", props.currentId);
-    const productRef = firebase.database().ref("products");
-    productRef
-      .orderByChild("vendor_id")
-      .equalTo(props.currentId)
-      .on("child_added", snap => {
-        const product = { ...snap.val(), id: snap.key };
-        console.log("hello", product);
-        this.setState({ products: [...this.state.products, product] });
-      });
+    if (!this.state.isDataFetched) {
+      const productRef = firebase.database().ref("products");
+      productRef
+        .orderByChild("vendor_id")
+        .equalTo(props.currentId)
+        .on("child_added", snap => {
+          const product = { ...snap.val(), id: snap.key };
+          console.log("hello", product);
+          this.setState({
+            products: [...this.state.products, product],
+            isDataFetched: true
+          });
+        });
+    }
   }
   handleCross = () => {
-    this.setState({ showDetails: false });
+    this.setState({ showDetails: false, detailProduct: "" });
   };
   render() {
     return (

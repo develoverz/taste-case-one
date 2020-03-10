@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import "./App.css";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import AddProducts from "./components/AddProduct";
-import Products from "./components/Products";
+import Login from "./components.vendor/Login";
+import Register from "./components.vendor/Register";
+import AddProducts from "./components.vendor/AddProduct";
+import Products from "./components.vendor/Products";
+import Profile from "./components.vendor/Profile";
 
-class App extends Component {
+class Vendor extends Component {
   state = {
     currentLoggedinId: "",
     isLoggedIn: false,
     loggedInVendor: {},
     isRegistered: true,
     addProductDisplay: false,
-    dashBoardDisplay: false
+    dashBoardDisplay: false,
+    profileDisplay: false
   };
 
   // functions to handle clicks
@@ -30,7 +32,9 @@ class App extends Component {
     this.setState({ addProductDisplay: false });
     console.log("product added");
   };
-
+  handleProfileCross = () => {
+    this.setState({ profileDisplay: false });
+  };
   handleSubmit = (vendor, id) => {
     console.log("registration completed and logged in as well");
     this.setState({
@@ -77,6 +81,24 @@ class App extends Component {
 
         {/* Main page after login */}
         <div style={{ display: this.state.isLoggedIn ? "block" : "none" }}>
+          {/* profile */}
+          <input
+            type="button"
+            value="show profile"
+            onClick={() => {
+              this.setState({ profileDisplay: true });
+            }}
+          />
+          <div
+            className="profile"
+            style={{ display: this.state.profileDisplay ? "block" : "none" }}
+          >
+            <Profile
+              loggedInVendor={this.state.loggedInVendor}
+              handleProfileCross={this.handleProfileCross}
+            />
+          </div>
+
           <div
             className="dashboard"
             style={{ display: this.state.dashBoardDisplay ? "block" : "none" }}
@@ -90,7 +112,6 @@ class App extends Component {
             />
             this is dashboard
           </div>
-
           <div
             className="productlist"
             style={{ display: this.state.dashBoardDisplay ? "none" : "block" }}
@@ -102,7 +123,10 @@ class App extends Component {
                 this.setState({ dashBoardDisplay: true });
               }}
             />
-            <Products currentId={this.state.currentLoggedinId} />
+            <Products
+              currentId={this.state.currentLoggedinId}
+              isLoggedIn={this.state.isLoggedIn}
+            />
             <div
               style={{
                 display: this.state.addProductDisplay ? "block" : "none"
@@ -133,4 +157,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Vendor;

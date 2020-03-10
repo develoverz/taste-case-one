@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
 import './index.css';
+// import Vendor from './root.vendor';
+import Customer from './root.customer'
 
-ReactDOM.render(
-  <App />,
+ReactDOM.render( < Customer / > ,
   document.getElementById('root')
 );
