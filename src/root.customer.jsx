@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import firebase from "./firebase";
-import Products from "./components.customer/Products";
+import ProductList from "./components.customer/ProductList";
 class Customer extends Component {
   state = {
     products: []
@@ -19,7 +19,7 @@ class Customer extends Component {
     return (
       <div>
         hello from customer
-        <Products products={this.state.products} />
+        <ProductList products={this.state.products} />
       </div>
     );
   }
