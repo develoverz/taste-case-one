@@ -1,2 +1,2 @@
-developed by develoverz
-welcome to our world of codes
+developed by develovers
+welcome to world of coding
