@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import firebase from "../firebase";
+import './login.css';
 class Login extends Component {
   state = {
     username: "jeetu jitender",
@@ -24,7 +25,7 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div>
+      <div className={flex-container}>
         <input
           type="text"
           name="username"
