@@ -25,7 +25,7 @@ class Login extends Component {
   render() {
     const { username, password } = this.state;
     return (
-      <div className={flex-container}>
+      <div className={'flex-container'}>
         <input
           type="text"
           name="username"
@@ -41,6 +41,7 @@ class Login extends Component {
           value={password}
         />
         <input
+          
           type="button"
           value="login"
           onClick={() => {
